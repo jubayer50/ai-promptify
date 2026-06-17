@@ -6,8 +6,6 @@ import { Link, Button } from "@heroui/react";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  // 654EFB
-  // D407D1
 
   const navLinks = (
     <>
@@ -18,7 +16,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
+    <nav className="sticky top-0 z-40 w-full border-b border-separator backdrop-blur-lg">
       <header className="flex max-w-340 mx-auto py-3 items-center justify-between px-6">
         <div className="flex items-center gap-4">
           <button

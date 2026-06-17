@@ -6,7 +6,7 @@ import { FaFacebookF, FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   const linkStyle =
-    "relative inline-block text-gray-600 hover:text-purple-600 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-purple-600 after:transition-all after:duration-300 hover:after:w-full";
+    "relative inline-block text-gray-600 hover:text-purple-600 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-purple-600 after:transition-all after:duration-300 hover:after:w-full";
 
   return (
     <footer className="bg-linear-to-b from-purple-50 to-pink-50 border-t border-gray-200 mt-20">
@@ -14,11 +14,11 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-10">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <h2 className="text-3xl font-bold bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
               AIPromptify
             </h2>
 
-            <p className="mt-4 text-gray-600 max-w-[550px] leading-relaxed">
+            <p className="mt-5 text-gray-600 max-w-138 leading-relaxed">
               Discover, share, and monetize powerful AI prompts for tools like
               OpenAI ChatGPT, Google Gemini, Anthropic Claude, and Midjourney.
               Empowering creators and helping users unlock better AI results.
@@ -31,16 +31,16 @@ const Footer = () => {
                   <a
                     key={index}
                     href="#"
-                    className="p-3 rounded-full bg-white shadow hover:scale-110 hover:-translate-y-1 transition-all duration-300"
+                    className="p-2 rounded-full bg-linear-to-r from-purple-600 to-pink-500 hover:scale-105 transition-all duration-300"
                   >
-                    <Icon />
+                    <Icon className="text-white text-lg" />
                   </a>
                 ),
               )}
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-14">
+          <div className="flex flex-col md:flex-row gap-16">
             {/* Quick Links */}
             <div>
               <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
