@@ -82,7 +82,7 @@ const CustomerReview = () => {
         >
           {reviews.map((review, index) => (
             <SwiperSlide key={index}>
-              <div className="h-full min-h-70 rounded-md bg-white border border-purple-200 p-8 shadow-sm transition-all duration-300 flex flex-col">
+              <div className="h-full min-h-70 rounded-md bg-white border border-purple-200 p-8 shadow-md transition-all duration-300 flex flex-col">
                 <FaQuoteLeft className="text-4xl text-purple-400 mb-5" />
 
                 <p className="text-gray-600 leading-relaxed">{review.review}</p>
