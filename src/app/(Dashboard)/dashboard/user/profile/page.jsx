@@ -78,6 +78,42 @@ const ProfilePage = async () => {
           </div>
         </div>
       </div>
+
+      <div className="mt-8 max-w-330 mx-auto">
+        {user?.plan === "free" ? (
+          <div className="rounded-xl border border-purple-200 bg-linear-to-r from-purple-50 to-pink-50 p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-bold text-gray-800">
+                Upgrade to Premium
+              </h3>
+              <p className="text-gray-600 text-sm mt-1">
+                Unlock premium prompts, advanced tools, and exclusive features.
+              </p>
+            </div>
+
+            <a href="/payment">
+              <button className="px-6 py-3 rounded-md bg-linear-to-r from-purple-600 to-pink-500 text-white font-semibold shadow-md hover:scale-105 transition-all duration-300">
+                Upgrade Now
+              </button>
+            </a>
+          </div>
+        ) : (
+          <div className="rounded-xl border border-yellow-200 bg-linear-to-r from-yellow-50 to-orange-50 p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-bold text-gray-800">
+                Premium Member ✨
+              </h3>
+              <p className="text-gray-600 text-sm mt-1">
+                You have access to all premium prompts and exclusive benefits.
+              </p>
+            </div>
+
+            <div className="px-5 py-3 rounded-md bg-yellow-100 text-yellow-700 font-semibold">
+              Active Plan
+            </div>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

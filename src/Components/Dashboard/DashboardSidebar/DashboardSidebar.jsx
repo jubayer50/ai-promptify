@@ -2,13 +2,14 @@
 
 import Logo from "@/Components/Logo/Logo";
 import { authClient } from "@/lib/auth-client";
-import { Bars, Envelope, House, Person } from "@gravity-ui/icons";
-
+import { Bars } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CiBookmark } from "react-icons/ci";
+import { FaRegUser } from "react-icons/fa";
+import { GoHome } from "react-icons/go";
 import { HiOutlineUsers } from "react-icons/hi";
 import { IoMdAdd } from "react-icons/io";
 import {
@@ -41,11 +42,11 @@ export function DashboardSidebar() {
       icon: MdOutlinePreview,
       label: "My Reviews",
     },
-    { href: "/dashboard/profile", icon: Person, label: "Profile" },
+    { href: "/dashboard/user/profile", icon: FaRegUser, label: "Profile" },
   ];
 
   const creatorNavContent = [
-    { href: "/dashboard/creator", icon: House, label: "Creator Home" },
+    { href: "/dashboard/creator", icon: GoHome, label: "Creator Home" },
     {
       href: "/dashboard/creator/add-prompt",
       icon: MdOutlineCreate,
@@ -53,10 +54,10 @@ export function DashboardSidebar() {
     },
     {
       href: "/dashboard/creator/my-prompts",
-      icon: Envelope,
+      icon: MdOutlineCreate,
       label: "My Prompts",
     },
-    { href: "/dashboard/profile", icon: Person, label: "Profile" },
+    { href: "/dashboard/creator/profile", icon: FaRegUser, label: "Profile" },
   ];
 
   const adminNavContent = [
@@ -80,7 +81,7 @@ export function DashboardSidebar() {
       icon: MdOutlineAnalytics,
       label: "Analytics",
     },
-    { href: "/dashboard/profile", icon: Person, label: "Profile" },
+    { href: "/dashboard/admin/profile", icon: FaRegUser, label: "Profile" },
   ];
 
   const navLinksMap = {
@@ -97,9 +98,9 @@ export function DashboardSidebar() {
         <Link
           key={item.label}
           href={item.href}
-          className={`flex items-center gap-3 rounded-md px-3 py-2.5 transition-colors hover:bg-default ${pantName == item.href ? "font-semibold text-purple-600" : ""} `}
+          className={`flex items-center gap-3 rounded-md px-3 py-2.5 transition-colors hover:bg-default ${pantName == item.href ? "font-semibold text-purple-600" : ""}`}
         >
-          <item.icon className="size-5 text-muted" />
+          <item.icon className="size-5" />
           {item.label}
         </Link>
       ))}

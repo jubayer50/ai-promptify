@@ -5,7 +5,7 @@ const DashboardLayout = ({ children }) => {
     <div className="flex flex-col md:flex-row gap-5">
       <DashboardSidebar></DashboardSidebar>
 
-      <div className="md:mt-5 ">{children}</div>
+      <div className="md:mt-5 flex-1">{children}</div>
     </div>
   );
 };
