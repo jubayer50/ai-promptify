@@ -1,6 +1,6 @@
 const UserDashboardHome = () => {
   return (
-    <div>
+    <div className="px-3">
       <h2>User Dashboard Home</h2>
     </div>
   );

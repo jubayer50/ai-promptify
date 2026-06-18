@@ -41,7 +41,7 @@ export function DashboardSidebar() {
       icon: MdOutlinePreview,
       label: "My Reviews",
     },
-    { href: "/dashboard/user/profile", icon: Person, label: "Profile" },
+    { href: "/dashboard/profile", icon: Person, label: "Profile" },
   ];
 
   const creatorNavContent = [
@@ -56,6 +56,7 @@ export function DashboardSidebar() {
       icon: Envelope,
       label: "My Prompts",
     },
+    { href: "/dashboard/profile", icon: Person, label: "Profile" },
   ];
 
   const adminNavContent = [
@@ -79,6 +80,7 @@ export function DashboardSidebar() {
       icon: MdOutlineAnalytics,
       label: "Analytics",
     },
+    { href: "/dashboard/profile", icon: Person, label: "Profile" },
   ];
 
   const navLinksMap = {
@@ -95,7 +97,7 @@ export function DashboardSidebar() {
         <Link
           key={item.label}
           href={item.href}
-          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default`}
+          className={`flex items-center gap-3 rounded-md px-3 py-2.5 transition-colors hover:bg-default ${pantName == item.href ? "font-semibold text-purple-600" : ""} `}
         >
           <item.icon className="size-5 text-muted" />
           {item.label}
@@ -113,8 +115,11 @@ export function DashboardSidebar() {
 
         <div className="flex items-center gap-3 py-6 px-4">
           <Image
-            src={user?.image}
-            alt={user?.name}
+            src={
+              user?.image ||
+              "https://www.magnific.com/free-photos-vectors/default-user"
+            }
+            alt={user?.name || "user"}
             width={100}
             height={100}
             className="w-14 h-14 rounded-full object-cover"
@@ -123,9 +128,9 @@ export function DashboardSidebar() {
           <div>
             <h2 className="font-bold text-xl">{user?.name}</h2>
             <p
-              className={`px-2.5 py-.5 w-fit text-[12px] font-medium border rounded-full mt-1`}
+              className={`px-2.5 py-.5 w-fit text-[12px] font-medium border rounded-full mt-1 ${user?.role == "user" ? "border-blue-500 text-blue-500" : user?.role == "creator" ? "border-yellow-500 text-yellow-500" : user?.role == "admin" ? "border-green-600 text-green-600" : ""}`}
             >
-              {user.role.toUpperCase()}
+              {user?.role?.toUpperCase()}
             </p>
           </div>
         </div>
