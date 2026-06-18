@@ -1,24 +1,45 @@
 "use client";
 
 import { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { ArrowRightFromSquare, ChevronDown } from "@gravity-ui/icons";
+import Logo from "../Logo/Logo";
+
+import { usePathname } from "next/navigation";
+import MyNavLink from "./MyNavLink";
+import { LuLayoutDashboard } from "react-icons/lu";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+  const pathName = usePathname();
+
   const navLinks = (
     <>
-      <li>Home</li>
-      <li>All Prompts</li>
-      <li>Home</li>
+      <MyNavLink href={"/"} pathName={pathName}>
+        Home
+      </MyNavLink>
+
+      <MyNavLink href={"/all-prompts"} pathName={pathName}>
+        All Prompts
+      </MyNavLink>
+
+      {user && (
+        <MyNavLink href={`/dashboard/${user?.role}`}>Dashboard</MyNavLink>
+      )}
     </>
   );
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator backdrop-blur-lg">
-      <header className="flex max-w-340 mx-auto py-3 items-center justify-between px-6">
-        <div className="flex items-center gap-4">
+      <header className="flex max-w-340 mx-auto py-3 items-center justify-between px-3">
+        <div className="flex items-center gap-2">
           <button
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -48,17 +69,67 @@ const Navbar = () => {
               )}
             </svg>
           </button>
-          <div>Logo</div>
+          <div>
+            <Logo></Logo>
+          </div>
         </div>
 
         <ul className="hidden items-center gap-4 md:flex">{navLinks}</ul>
 
         <div>
-          <div className="p-1 rounded-md hover:bg-gray-200">
-            <div className="h-8 w-8 rounded-full bg-linear-to-b from-[#654EFB] to-[#D407D1]"></div>
+          {user ? (
+            <div
+              onClick={() => setShowProfileMenu(!showProfileMenu)}
+              className="relative px-2 py-1 rounded-md hover:bg-gray-200 flex items-center gap-2 transition-all duration-300"
+            >
+              <div className="h-8 w-8 rounded-full bg-linear-to-b from-[#654EFB] to-[#D407D1]"></div>
 
-            <div className=""></div>
-          </div>
+              <ChevronDown
+                className={`${showProfileMenu ? "rotate-180 transition-all duration-300" : ""}`}
+              ></ChevronDown>
+
+              {showProfileMenu && (
+                <ul className="absolute top-13 border right-0 rounded-md px-2.5 py-1.5 bg-white/80 backdrop-blur-lg">
+                  <Link href={`dashboard/${user?.role}`}>
+                    <li className="hover:bg-gray-200 rounded-md px-2.5 py-1 flex items-center gap-1.5">
+                      <LuLayoutDashboard></LuLayoutDashboard> Dashboard
+                    </li>
+                  </Link>
+
+                  <li
+                    onClick={async () => await authClient.signOut()}
+                    className="hover:bg-gray-200 rounded-md px-2.5 py-1 flex items-center gap-1.5 text-red-500"
+                  >
+                    <ArrowRightFromSquare></ArrowRightFromSquare> Signout
+                  </li>
+                </ul>
+              )}
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Link href={"signin"}>
+                <Button
+                  size="sm"
+                  className={
+                    "rounded-md bg-linear-to-r from-purple-600 to-pink-500 text-white font-semibold"
+                  }
+                >
+                  Sign In
+                </Button>
+              </Link>
+
+              <Link href={"/signup"}>
+                <Button
+                  size="sm"
+                  className={
+                    "rounded-md border-2 bg-transparent border-purple-500 text-purple-600 font-semibold"
+                  }
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </header>
 

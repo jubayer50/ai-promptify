@@ -3,6 +3,7 @@
 import React from "react";
 import { Input, Button } from "@heroui/react";
 import { FaFacebookF, FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
+import Logo from "../Logo/Logo";
 
 const Footer = () => {
   const linkStyle =
@@ -14,9 +15,10 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-10">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <h2 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+            {/* <h2 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
               AIPromptify
-            </h2>
+            </h2> */}
+            <Logo></Logo>
 
             <p className="mt-5 text-gray-600 max-w-138 leading-relaxed">
               Discover, share, and monetize powerful AI prompts for tools like

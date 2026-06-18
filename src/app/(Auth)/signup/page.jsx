@@ -1,12 +1,17 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { EyeClosed } from "@gravity-ui/icons";
+import { toast } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter();
 
   const {
     register,
@@ -16,7 +21,14 @@ const SignUpPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data, "from signup page");
+    const { data: authData, error } = await authClient.signUp.email({
+      ...data,
+    });
+
+    if (authData) {
+      router.push("/");
+      toast.success("Signup successful!");
+    }
 
     reset();
   };
