@@ -1,6 +1,7 @@
 "use client";
 
 import { createPrompt } from "@/lib/action/add-prompt";
+import { authClient } from "@/lib/auth-client";
 import { uploadImage } from "@/lib/core/uploadImage";
 import { ArrowUpFromLine } from "@gravity-ui/icons";
 import {
@@ -25,6 +26,9 @@ const AddPromptPage = () => {
   const [imageUrl, setImageUrl] = useState();
 
   const router = useRouter();
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -55,6 +59,7 @@ const AddPromptPage = () => {
       visibility: data?.visibility,
       copyCount: 0,
       status: "Pending",
+      userId: user?.id,
     };
 
     const postPrompt = await createPrompt(promptData);
