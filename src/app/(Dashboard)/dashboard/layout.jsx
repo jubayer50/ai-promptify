@@ -1,7 +1,11 @@
+import { DashboardSidebar } from "@/Components/Dashboard/DashboardSidebar/DashboardSidebar";
+
 const DashboardLayout = ({ children }) => {
   return (
-    <div>
-      <div>{children}</div>
+    <div className="flex flex-col md:flex-row gap-5">
+      <DashboardSidebar></DashboardSidebar>
+
+      <div className="md:mt-5 ">{children}</div>
     </div>
   );
 };
