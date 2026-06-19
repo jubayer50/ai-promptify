@@ -1,6 +1,7 @@
 import { Copy, StarFill } from "@gravity-ui/icons";
 import { Button } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const PromptCard = ({ prompt }) => {
   return (
@@ -54,13 +55,15 @@ const PromptCard = ({ prompt }) => {
         </div>
 
         <div className="mt-4">
-          <Button
-            className={
-              "w-full rounded-md bg-linear-to-r from-purple-600 to-pink-500"
-            }
-          >
-            View Details
-          </Button>
+          <Link href={`/all-prompts/${prompt._id}`}>
+            <Button
+              className={
+                "w-full rounded-md bg-linear-to-r from-purple-600 to-pink-500"
+              }
+            >
+              View Details
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

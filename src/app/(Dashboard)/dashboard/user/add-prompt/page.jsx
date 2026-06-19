@@ -52,6 +52,7 @@ const AddPromptPage = () => {
       prompt_title: data?.prompt_title,
       prompt_description: data?.prompt_description,
       prompt_content: data?.prompt_content,
+      prompt_category: data?.category,
       ai_tool: data?.ai_tool,
       tags: data?.tags,
       difficulty_level: data?.difficulty_level,
