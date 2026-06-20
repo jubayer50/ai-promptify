@@ -8,7 +8,7 @@ import { Button, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 const BookMarkButton = ({ prompt, bookmark }) => {
-  const { _id, prompt_title } = prompt;
+  const { _id, prompt_title, visibility } = prompt;
 
   const router = useRouter();
 
@@ -70,6 +70,7 @@ const BookMarkButton = ({ prompt, bookmark }) => {
 
   return (
     <Button
+      isDisabled={visibility === "privet" && user?.plan === "free"}
       onClick={bookmark.bookmark ? handleRemoveBookMark : handleBookMark}
       isIconOnly
       variant="secondary"

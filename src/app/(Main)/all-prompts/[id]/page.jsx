@@ -1,10 +1,12 @@
 import BookMarkButton from "@/Components/AllPrompts/BookMarkButton/BookMarkButton";
+import CommentAndRating from "@/Components/AllPrompts/CommentAndRating/CommentAndRating";
 import CopyButton from "@/Components/AllPrompts/CopyButton/CopyButton";
+import DisplayComment from "@/Components/AllPrompts/DisplayComment/DisplayComment";
 import ReportPrompt from "@/Components/AllPrompts/ReportPrompt/ReportPrompt";
 import { getBookmarkByUserIdAndPromptId } from "@/lib/api/bookmarks";
 import { getPromptById } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
-import { ArrowLeft, TriangleExclamation } from "@gravity-ui/icons";
+import { ArrowLeft } from "@gravity-ui/icons";
 import { Button, TextArea, TextField } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -72,7 +74,7 @@ const PromptDetailPage = async ({ params }) => {
               <h3 className="text-lg font-medium">Prompt Content</h3>
 
               <div className="flex gap-2">
-                <CopyButton prompt={getPrompt}></CopyButton>
+                <CopyButton prompt={getPrompt} user={user}></CopyButton>
 
                 <BookMarkButton
                   prompt={getPrompt}
@@ -83,8 +85,51 @@ const PromptDetailPage = async ({ params }) => {
               </div>
             </div>
 
-            <div className="border border-purple-200 rounded-md min-h-24 p-3 mt-2.5">
-              <p className="text-purple-500">{prompt_content}</p>
+            <div className="border border-purple-200 rounded-md min-h-24 mt-2.5 overflow-hidden">
+              {visibility !== "privet" || user.plan !== "free" ? (
+                <p className="text-purple-500 p-3">{prompt_content}</p>
+              ) : (
+                <div className="h-full bg-purple-200 flex items-center justify-center p-6 ">
+                  <div className="text-center space-y-1.5">
+                    <p className="font-medium">
+                      To access the Privet content, you need to be a premium
+                      member
+                    </p>
+                    <Button
+                      className={
+                        "rounded-md bg-linear-to-r from-purple-600 to-pink-500"
+                      }
+                    >
+                      Unlock Premium
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/*how to use ai */}
+            <div className="mt-3 space-y-2">
+              <h4 className="font-medium text-lg">How to Use AI Effectively</h4>
+
+              {/* Be Specific — Give clear instructions.
+Add Context — Share necessary details.
+Use Steps — Break tasks into parts.
+Refine Prompts — Improve and retry.
+Review Output — Check before using. */}
+              <p>
+                Using AI the right way can save time, improve productivity, and
+                help you achieve smarter results with better prompts.
+              </p>
+
+              <p className="text-[14px] mt-3">
+                <span className="font-medium">Add Context</span> — Share
+                necessary details,{" "}
+                <span className="font-medium">Use Steps</span> — Break tasks
+                into parts. <span className="font-medium">Refine Prompts</span>{" "}
+                — Improve and retry{" "}
+                <span className="font-medium">Review Output</span> — Check
+                before using.
+              </p>
             </div>
           </div>
         </div>
@@ -170,28 +215,11 @@ const PromptDetailPage = async ({ params }) => {
       </div>
 
       {/* comment and review related */}
-      <div className="mt-8">
-        <div>
-          <h2 className="font-semibold text-lg">Comment & Review:</h2>
-          <div className="mt-2">
-            <TextField isRequired name="comment">
-              <TextArea
-                placeholder="Tell us you comment and review"
-                className={"rounded-md border border-purple-300 shadow-none"}
-              />
-            </TextField>
+      <CommentAndRating prompt={getPrompt} user={user}></CommentAndRating>
 
-            <div className="mt-2">
-              <Button
-                className={
-                  "bg-linear-to-r from-purple-600 to-pink-500 rounded-md"
-                }
-              >
-                Post Comment
-              </Button>
-            </div>
-          </div>
-        </div>
+      {/* display comment and rating */}
+      <div className="mt-6">
+        <DisplayComment></DisplayComment>
       </div>
     </div>
   );

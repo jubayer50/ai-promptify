@@ -5,8 +5,8 @@ import { Check, Copy } from "@gravity-ui/icons";
 import { Button, toast } from "@heroui/react";
 import { useState } from "react";
 
-const CopyButton = ({ prompt }) => {
-  const { _id, prompt_content } = prompt;
+const CopyButton = ({ prompt, user }) => {
+  const { _id, prompt_content, visibility } = prompt;
 
   const [showCopy, setShowCopy] = useState(true);
 
@@ -34,6 +34,7 @@ const CopyButton = ({ prompt }) => {
   return (
     <div>
       <Button
+        isDisabled={visibility === "privet" && user?.plan === "free"}
         onClick={handleCopyButton}
         isIconOnly
         variant="secondary"

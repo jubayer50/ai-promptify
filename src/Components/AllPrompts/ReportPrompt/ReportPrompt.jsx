@@ -15,7 +15,7 @@ import {
 } from "@heroui/react";
 
 const ReportPrompt = ({ prompt, user }) => {
-  const { _id, prompt_title } = prompt;
+  const { _id, prompt_title, visibility } = prompt;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +48,7 @@ const ReportPrompt = ({ prompt, user }) => {
   return (
     <Modal>
       <Button
+        isDisabled={visibility === "privet" && user?.plan === "free"}
         isIconOnly
         variant="danger-soft"
         className={"rounded-md bg-red-100"}
