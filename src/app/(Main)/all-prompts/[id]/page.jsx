@@ -219,7 +219,7 @@ Review Output — Check before using. */}
 
       {/* display comment and rating */}
       <div className="mt-6">
-        <DisplayComment></DisplayComment>
+        <DisplayComment prompt={getPrompt} user={user}></DisplayComment>
       </div>
     </div>
   );
