@@ -111,11 +111,6 @@ const PromptDetailPage = async ({ params }) => {
             <div className="mt-3 space-y-2">
               <h4 className="font-medium text-lg">How to Use AI Effectively</h4>
 
-              {/* Be Specific — Give clear instructions.
-Add Context — Share necessary details.
-Use Steps — Break tasks into parts.
-Refine Prompts — Improve and retry.
-Review Output — Check before using. */}
               <p>
                 Using AI the right way can save time, improve productivity, and
                 help you achieve smarter results with better prompts.

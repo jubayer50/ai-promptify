@@ -49,7 +49,7 @@ export function DashboardSidebar() {
     { href: "/dashboard/creator", icon: GoHome, label: "Creator Home" },
     {
       href: "/dashboard/creator/add-prompt",
-      icon: MdOutlineCreate,
+      icon: IoMdAdd,
       label: "Add Prompt",
     },
     {

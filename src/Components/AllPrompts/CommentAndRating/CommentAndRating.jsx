@@ -19,6 +19,8 @@ const CommentAndRating = ({ prompt, user }) => {
       rating: rating,
       comment: comment,
       userId: user?.id,
+      userName: user?.name,
+      userImage: user?.image,
     };
 
     const res = await createCommentAndRating(commentData);
