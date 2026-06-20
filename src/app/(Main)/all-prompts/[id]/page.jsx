@@ -1,14 +1,19 @@
+import BookMarkButton from "@/Components/AllPrompts/BookMarkButton/BookMarkButton";
 import CopyButton from "@/Components/AllPrompts/CopyButton/CopyButton";
+import { getBookmarkByUserIdAndPromptId } from "@/lib/api/bookmarks";
 import { getPromptById } from "@/lib/api/prompts";
-import { ArrowLeft, Bookmark, TriangleExclamation } from "@gravity-ui/icons";
+import { getUserSession } from "@/lib/core/session";
+import { ArrowLeft, TriangleExclamation } from "@gravity-ui/icons";
 import { Button, TextArea, TextField } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 
 const PromptDetailPage = async ({ params }) => {
   const { id } = await params;
+  const user = await getUserSession();
 
   const getPrompt = await getPromptById(id);
+  const getUserBookmark = await getBookmarkByUserIdAndPromptId(user?.id, id);
 
   const {
     _id,
@@ -27,27 +32,10 @@ const PromptDetailPage = async ({ params }) => {
     creatorName,
     creatorImage,
     creatorEmail,
+    bookmarkCount,
   } = getPrompt;
   /**
-  {
-    "_id": "6a33e07c7e48e06ae98e496a",
-    "prompt_title": "Quod in tempora in c",
-    "prompt_description": "Ipsam qui qui cupida",
-    "prompt_content": "Iusto enim fugiat e",
-    "ai_tool": "gemini",
-    "tags": "Ex in officiis eos ",
-    "difficulty_level": "beginner",
-    "image": "https://i.ibb.co/20jXCHgd/favicon.png",
-    "visibility": "privet",
-    "copyCount": 0,
-    "status": "Pending",
-    "userId": "6a336c6053c1e1314629a757",
-    "createdAt": "2026-06-18T12:11:40.928Z",
-    "creatorName": "Jubayer",
-    "creatorEmail": "jubayer@gmail.com",
-    "creatorImage": "https://images.unsplash.com/photo-1537511446984-935f663eb1f4"
-}
-
+  
 {
     "_id": "6a34e6fffb87770413b6f99f",
     "prompt_title": "Cum voluptatem Volu",
@@ -87,13 +75,10 @@ const PromptDetailPage = async ({ params }) => {
               <div className="flex gap-2">
                 <CopyButton prompt={getPrompt}></CopyButton>
 
-                <Button
-                  isIconOnly
-                  variant="secondary"
-                  className={"bg-purple-100 rounded-md"}
-                >
-                  <Bookmark></Bookmark>
-                </Button>
+                <BookMarkButton
+                  prompt={getPrompt}
+                  bookmark={getUserBookmark}
+                ></BookMarkButton>
 
                 <Button
                   isIconOnly
@@ -147,7 +132,7 @@ const PromptDetailPage = async ({ params }) => {
 
             <div className="flex justify-between">
               <p>Total Bookmarks</p>
-              <p></p>
+              <p>{bookmarkCount}</p>
             </div>
           </div>
 

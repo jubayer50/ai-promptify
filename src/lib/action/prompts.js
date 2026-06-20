@@ -5,8 +5,10 @@ import { serverMutation } from "../core/server";
 
 export const updatePromptsCopyCount = async (id, data) => {
   const result = serverMutation(`/api/prompts/${id}`, data, "PATCH");
-
   revalidatePath(`/all-prompts/${id}`);
-
   return result;
+};
+
+export const makeBookmark = async (data) => {
+  return serverMutation("/api/bookmarks", data, "POST");
 };
