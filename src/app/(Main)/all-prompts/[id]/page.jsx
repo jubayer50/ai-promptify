@@ -1,5 +1,6 @@
 import BookMarkButton from "@/Components/AllPrompts/BookMarkButton/BookMarkButton";
 import CopyButton from "@/Components/AllPrompts/CopyButton/CopyButton";
+import ReportPrompt from "@/Components/AllPrompts/ReportPrompt/ReportPrompt";
 import { getBookmarkByUserIdAndPromptId } from "@/lib/api/bookmarks";
 import { getPromptById } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
@@ -22,9 +23,7 @@ const PromptDetailPage = async ({ params }) => {
     prompt_content,
     prompt_category,
     ai_tool,
-    tags,
     difficulty_level,
-    image,
     visibility,
     copyCount,
     status,
@@ -80,13 +79,7 @@ const PromptDetailPage = async ({ params }) => {
                   bookmark={getUserBookmark}
                 ></BookMarkButton>
 
-                <Button
-                  isIconOnly
-                  variant="secondary"
-                  className={"bg-purple-100 rounded-md"}
-                >
-                  <TriangleExclamation></TriangleExclamation>
-                </Button>
+                <ReportPrompt prompt={getPrompt} user={user}></ReportPrompt>
               </div>
             </div>
 
@@ -102,7 +95,7 @@ const PromptDetailPage = async ({ params }) => {
             Prompt Details
           </h2>
 
-          <div className="mt-3 space-y-2 border-b border-purple-200 pb-3">
+          <div className="mt-3 space-y-2.5 border-b border-purple-200 pb-3">
             <div className="flex justify-between">
               <p>AI Engine</p>
               <p>{ai_tool?.toUpperCase()}</p>
@@ -121,6 +114,23 @@ const PromptDetailPage = async ({ params }) => {
             <div className="flex justify-between">
               <p>Difficulty</p>
               <p>{difficulty_level?.toUpperCase()}</p>
+            </div>
+
+            <div className="flex justify-between">
+              <p>Status</p>
+              <p>{status?.toUpperCase()}</p>
+            </div>
+
+            <div className="flex justify-between">
+              <p>Published Date</p>
+              <p>
+                {" "}
+                {new Date(createdAt).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </p>
             </div>
           </div>
 

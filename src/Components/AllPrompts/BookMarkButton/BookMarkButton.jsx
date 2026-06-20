@@ -60,7 +60,11 @@ const BookMarkButton = ({ prompt, bookmark }) => {
   };
 
   const handleRemoveBookMark = async () => {
-    await removeBookmark(_id, user?.id);
+    const res = await removeBookmark(_id, user?.id);
+    if (res.deletedCount > 0) {
+      toast.success("Unsave successfully done");
+    }
+
     router.refresh();
   };
 
