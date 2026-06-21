@@ -9,19 +9,19 @@ const PromptCard = async ({ prompt }) => {
   return (
     <div>
       {prompt?.status !== "pending" && (
-        <div className="border rounded-md overflow-hidden group">
-          <div className="h-60 overflow-hidden border-b">
+        <div className="border rounded-md overflow-hidden group h-full flex flex-col">
+          <div className="h-60 overflow-hidden border-b flex flex-col shrink-0">
             <Image
               src={prompt.image}
               alt={prompt?.prompt_title}
               width={800}
               height={800}
               className="h-full w-full object-cover aspect-square group-hover:scale-104 transition-all duration-300"
-            ></Image>
+            />
           </div>
 
-          <div className="p-4 space-y-3">
-            <div className="flex gap-3">
+          <div className="p-4 space-y-3 flex flex-col flex-1">
+            <div className="flex gap-3 shrink-0">
               <p className="text-[12px] border border-purple-300 rounded-full bg-purple-100 px-2 py-.5 w-fit">
                 {prompt?.ai_tool.toUpperCase()}
               </p>
@@ -30,44 +30,51 @@ const PromptCard = async ({ prompt }) => {
               </p>
             </div>
 
-            <h2 className="font-bold text-xl md:text-2xl">
+            {/* Fixed title height */}
+            <h2 className="font-bold text-xl md:text-2xl line-clamp-2 min-h-16">
               {prompt?.prompt_title}
             </h2>
 
-            <p className="line-clamp-3">{prompt?.prompt_description}</p>
+            {/* Fixed description height */}
+            <p className="line-clamp-2 min-h-12">
+              {prompt?.prompt_description}
+            </p>
 
-            <div className="pt-3 border-t flex justify-between items-center">
-              <div>
-                <p
-                  className={`text-[12px] border px-2 rounded-full py-.5 w-fit ${prompt?.status == "Pending" ? "border-red-300 bg-red-100 text-red-600" : "border-green-300 bg-green-100 text-green-600"}`}
-                >
-                  {prompt?.status.toUpperCase()}
-                </p>
-              </div>
-
-              <div className="flex gap-6">
-                <div className="flex items-center gap-2">
-                  <Copy className="w-4 h-4 text-purple-600"></Copy>
-                  <span>{prompt?.copyCount}</span>
+            {/* Bottom section pushed down */}
+            <div className="mt-auto">
+              <div className="pt-3 border-t flex justify-between items-center">
+                <div>
+                  <p
+                    className={`text-[12px] border px-2 rounded-full py-.5 w-fit ${
+                      prompt?.status == "Pending"
+                        ? "border-red-300 bg-red-100 text-red-600"
+                        : "border-green-300 bg-green-100 text-green-600"
+                    }`}
+                  >
+                    {prompt?.status.toUpperCase()}
+                  </p>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <StarFill className="w-4 h-4 text-purple-600"></StarFill>
-                  <span>0</span>
+                <div className="flex gap-6">
+                  <div className="flex items-center gap-2">
+                    <Copy className="w-4 h-4 text-purple-600" />
+                    <span>{prompt?.copyCount}</span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <StarFill className="w-4 h-4 text-purple-600" />
+                    <span>0</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-4">
-              <Link href={`/all-prompts/${prompt._id}`}>
-                <Button
-                  className={
-                    "w-full rounded-md bg-linear-to-r from-purple-600 to-pink-500"
-                  }
-                >
-                  View Details
-                </Button>
-              </Link>
+              <div className="mt-4">
+                <Link href={`/all-prompts/${prompt._id}`}>
+                  <Button className="w-full rounded-md bg-linear-to-r from-purple-600 to-pink-500">
+                    View Details
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

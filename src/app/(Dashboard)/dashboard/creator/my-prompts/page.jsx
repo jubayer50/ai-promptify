@@ -2,6 +2,8 @@ import { getUserPromptsByUserId } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
 import { Eye, PencilToSquare, TrashBin } from "@gravity-ui/icons";
 import { Button, Table } from "@heroui/react";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const CreatorMyPromptsPage = async () => {
@@ -64,7 +66,9 @@ const CreatorMyPromptsPage = async () => {
                     <Table.Cell>
                       <div className="flex gap-3">
                         <Button isIconOnly variant="tertiary" className={""}>
-                          <Eye></Eye>
+                          <Link href={`/all-prompts/${userPrompt._id}`}>
+                            <Eye></Eye>
+                          </Link>
                         </Button>
 
                         <Button isIconOnly variant="tertiary" className={""}>

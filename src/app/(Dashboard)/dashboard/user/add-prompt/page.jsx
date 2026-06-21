@@ -1,6 +1,8 @@
 "use client";
 
 import { createPrompt } from "@/lib/action/add-prompt";
+import { getUserPlan } from "@/lib/api/plan";
+import { getUserPromptsByUserId } from "@/lib/api/prompts";
 import { authClient } from "@/lib/auth-client";
 import { uploadImage } from "@/lib/core/uploadImage";
 import { ArrowUpFromLine } from "@gravity-ui/icons";
@@ -18,12 +20,15 @@ import {
   toast,
 } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const AddPromptPage = () => {
   const [imageUrl, setImageUrl] = useState();
+  const [plan, setPlan] = useState({});
+  const [userPrompts, setUserPrompts] = useState({});
 
   const router = useRouter();
 
@@ -69,6 +74,58 @@ const AddPromptPage = () => {
       router.push("/all-prompts");
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+
+    // get plan
+    const fetchPlan = async () => {
+      const userPlan = await getUserPlan(user?.plan);
+      setPlan(userPlan);
+    };
+
+    // get suer prompt
+    const fetchUserPrompt = async () => {
+      const userPrompts = await getUserPromptsByUserId(user?.id);
+      setUserPrompts(userPrompts);
+    };
+
+    // get plan call
+    fetchPlan();
+
+    // call get prompts
+    fetchUserPrompt();
+  }, [user]);
+
+  // handle user limit
+  if (plan?.maximumAddPrompt <= userPrompts.length) {
+    return (
+      <div className="max-w-330 mx-auto bg-purple-200 flex items-center justify-center px-3 py-8 rounded-md ">
+        <div className="text-center space-y-1.5">
+          <h3 className="font-bold">Your limit is over</h3>
+          <p>Free user can add prompt only 3.</p>
+          <p className="font-medium">
+            To add more{" "}
+            <em className="bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+              prompt
+            </em>
+            , you need to be a premium member!
+          </p>
+          <Link href={"/plan"}>
+            <Button
+              className={
+                "rounded-md bg-linear-to-r from-purple-600 to-pink-500"
+              }
+            >
+              Unlock Premium
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-330 px-3 mx-auto">

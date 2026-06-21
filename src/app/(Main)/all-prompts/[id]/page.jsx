@@ -95,13 +95,15 @@ const PromptDetailPage = async ({ params }) => {
                       To access the Privet content, you need to be a premium
                       member
                     </p>
-                    <Button
-                      className={
-                        "rounded-md bg-linear-to-r from-purple-600 to-pink-500"
-                      }
-                    >
-                      Unlock Premium
-                    </Button>
+                    <Link href={"/plan"} className="">
+                      <Button
+                        className={
+                          "rounded-md bg-linear-to-r from-purple-600 to-pink-500"
+                        }
+                      >
+                        Unlock Premium
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               )}
