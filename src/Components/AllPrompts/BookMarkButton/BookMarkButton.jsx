@@ -8,7 +8,7 @@ import { Button, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 const BookMarkButton = ({ prompt, bookmark }) => {
-  const { _id, prompt_title, visibility } = prompt;
+  const { _id, prompt_title, prompt_description } = prompt;
 
   const router = useRouter();
 
@@ -42,12 +42,15 @@ const BookMarkButton = ({ prompt, bookmark }) => {
     const bookMarkData = {
       promptId: _id,
       promptTitle: prompt_title,
+      promptDescription: prompt_description,
       userId: user?.id,
       userName: user?.name,
       bookmark: true,
     };
 
     const res = await makeBookmark(bookMarkData);
+
+    console.log(bookmark.bookmark);
 
     if (res.insertedId) {
       toast.success("Save successfully done");
@@ -70,7 +73,7 @@ const BookMarkButton = ({ prompt, bookmark }) => {
 
   return (
     <Button
-      isDisabled={visibility === "privet" && user?.plan === "free"}
+      // isDisabled={visibility === "privet" && user?.plan === "free"}
       onClick={bookmark.bookmark ? handleRemoveBookMark : handleBookMark}
       isIconOnly
       variant="secondary"

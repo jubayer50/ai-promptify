@@ -21,13 +21,23 @@ const PromptCard = async ({ prompt }) => {
           </div>
 
           <div className="p-4 space-y-3 flex flex-col flex-1">
-            <div className="flex gap-3 shrink-0">
-              <p className="text-[12px] border border-purple-300 rounded-full bg-purple-100 px-2 py-.5 w-fit">
-                {prompt?.ai_tool.toUpperCase()}
-              </p>
-              <p className="text-[12px] border border-pink-300 rounded-full bg-pink-100 px-2 py-.5 w-fit">
-                {prompt?.difficulty_level.toUpperCase()}
-              </p>
+            <div className="flex justify-between">
+              <div className="flex gap-2 shrink-0">
+                <p className="text-[12px] border border-purple-300 rounded-full bg-purple-100 px-2 py-.5 w-fit">
+                  {prompt?.ai_tool.toUpperCase()}
+                </p>
+                <p className="text-[12px] border border-pink-300 rounded-full bg-pink-100 px-2 py-.5 w-fit">
+                  {prompt?.difficulty_level.toUpperCase()}
+                </p>
+              </div>
+
+              <div>
+                <p
+                  className={`${prompt.visibility == "privet" ? "border-red-500 bg-red-100 text-red-500" : ""} text-[12px] border rounded-full px-2 py-.5 w-fit`}
+                >
+                  {prompt.visibility == "privet" ? "PREMIUM" : "FREE"}
+                </p>
+              </div>
             </div>
 
             {/* Fixed title height */}

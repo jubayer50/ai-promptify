@@ -102,7 +102,7 @@ const AddPromptPage = () => {
   // handle user limit
   if (plan?.maximumAddPrompt <= userPrompts.length) {
     return (
-      <div className="max-w-330 mx-auto bg-purple-200 flex items-center justify-center px-3 py-8 rounded-md ">
+      <div className="max-w-330 mx-auto bg-purple-200 flex items-center justify-center min-h-screen px-3 py-8 rounded-md ">
         <div className="text-center space-y-1.5">
           <h3 className="font-bold">Your limit is over</h3>
           <p>Free user can add prompt only 3.</p>
@@ -113,15 +113,30 @@ const AddPromptPage = () => {
             </em>
             , you need to be a premium member!
           </p>
-          <Link href={"/plan"}>
-            <Button
-              className={
-                "rounded-md bg-linear-to-r from-purple-600 to-pink-500"
-              }
+
+          <div className="flex flex-col md:flex-row gap-2.5 justify-center items-center">
+            <form
+              action={`/api/subscription?redirect=/dashboard/user/add-prompt`}
+              method="POST"
             >
-              Unlock Premium
-            </Button>
-          </Link>
+              <Button
+                type="submit"
+                className="rounded-md bg-linear-to-r from-purple-600 to-pink-500"
+              >
+                Unlock Premium
+              </Button>
+            </form>
+
+            <Link href={"/plan"}>
+              <Button
+                className={
+                  "rounded-md bg-transparent text-black border border-purple-600"
+                }
+              >
+                View Plan
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     );

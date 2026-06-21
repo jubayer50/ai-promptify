@@ -17,6 +17,7 @@ const PromptDetailPage = async ({ params }) => {
 
   const getPrompt = await getPromptById(id);
   const getUserBookmark = await getBookmarkByUserIdAndPromptId(user?.id, id);
+  console.log(getUserBookmark, "from detail apge");
 
   const {
     _id,
@@ -78,7 +79,7 @@ const PromptDetailPage = async ({ params }) => {
 
                 <BookMarkButton
                   prompt={getPrompt}
-                  bookmark={getUserBookmark}
+                  bookmark={getUserBookmark[0] || []}
                 ></BookMarkButton>
 
                 <ReportPrompt prompt={getPrompt} user={user}></ReportPrompt>
@@ -90,43 +91,60 @@ const PromptDetailPage = async ({ params }) => {
                 <p className="text-purple-500 p-3">{prompt_content}</p>
               ) : (
                 <div className="h-full bg-purple-200 flex items-center justify-center p-6 ">
-                  <div className="text-center space-y-1.5">
+                  <div className="text-center space-y-2.5">
                     <p className="font-medium">
                       To access the Privet content, you need to be a premium
                       member
                     </p>
-                    <Link href={"/plan"} className="">
-                      <Button
-                        className={
-                          "rounded-md bg-linear-to-r from-purple-600 to-pink-500"
-                        }
+
+                    <div className="flex flex-col md:flex-row items-center gap-2.5 justify-center">
+                      <form
+                        action={`/api/subscription?redirect=/all-prompts/${_id}`}
+                        method="POST"
                       >
-                        Unlock Premium
-                      </Button>
-                    </Link>
+                        <Button
+                          type="submit"
+                          className="rounded-md bg-linear-to-r from-purple-600 to-pink-500"
+                        >
+                          Unlock Premium
+                        </Button>
+                      </form>
+
+                      <Link href={"/plan"}>
+                        <Button
+                          className={
+                            "rounded-md bg-transparent text-black border border-purple-600"
+                          }
+                        >
+                          View Plan
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
             </div>
 
             {/*how to use ai */}
-            <div className="mt-3 space-y-2">
+            <div className="mt-6 space-y-2 ">
               <h4 className="font-medium text-lg">How to Use AI Effectively</h4>
 
-              <p>
-                Using AI the right way can save time, improve productivity, and
-                help you achieve smarter results with better prompts.
-              </p>
+              <div className="bg-purple-50 p-3 rounded-md">
+                <p>
+                  Using AI the right way can save time, improve productivity,
+                  and help you achieve smarter results with better prompts.
+                </p>
 
-              <p className="text-[14px] mt-3">
-                <span className="font-medium">Add Context</span> — Share
-                necessary details,{" "}
-                <span className="font-medium">Use Steps</span> — Break tasks
-                into parts. <span className="font-medium">Refine Prompts</span>{" "}
-                — Improve and retry{" "}
-                <span className="font-medium">Review Output</span> — Check
-                before using.
-              </p>
+                <p className="text-[14px] mt-3">
+                  <span className="font-medium">Add Context</span> — Share
+                  necessary details,{" "}
+                  <span className="font-medium">Use Steps</span> — Break tasks
+                  into parts.{" "}
+                  <span className="font-medium">Refine Prompts</span> — Improve
+                  and retry <span className="font-medium">Review Output</span> —
+                  Check before using.
+                </p>
+              </div>
             </div>
           </div>
         </div>

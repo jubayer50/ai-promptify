@@ -75,9 +75,14 @@ const PricingPage = () => {
             ))}
           </div>
 
-          <Button className="w-full mt-6 rounded-md bg-white text-purple-600 font-semibold">
-            Unlock Premium
-          </Button>
+          <form action={"/api/subscription"} method="POST">
+            <Button
+              type="submit"
+              className="w-full mt-6 rounded-md bg-white text-purple-600 font-semibold"
+            >
+              Unlock Premium
+            </Button>
+          </form>
         </div>
       </div>
 

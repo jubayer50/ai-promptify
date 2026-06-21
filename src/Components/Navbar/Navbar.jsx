@@ -90,7 +90,7 @@ const Navbar = () => {
 
               {showProfileMenu && (
                 <ul className="absolute top-13 border right-0 rounded-md px-2.5 py-1.5 bg-white/80 backdrop-blur-lg">
-                  <Link href={`dashboard/${user?.role}`}>
+                  <Link href={`/dashboard/${user?.role}`}>
                     <li className="hover:bg-gray-200 rounded-md px-2.5 py-1 flex items-center gap-1.5">
                       <LuLayoutDashboard></LuLayoutDashboard> Dashboard
                     </li>

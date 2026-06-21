@@ -6,3 +6,8 @@ export const getBookmarkByUserIdAndPromptId = async (userId, promptId) => {
   );
   return res.json();
 };
+
+export const getUserAllBookmarks = async (userId) => {
+  const res = await fetch(`${base_url}/api/bookmarks?userId=${userId}`);
+  return res.json();
+};

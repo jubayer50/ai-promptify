@@ -6,3 +6,8 @@ export const getCommentsByPromptIdAndUserId = async (promptId, userId) => {
   );
   return res.json();
 };
+
+export const getUserComments = async (userId) => {
+  const res = await fetch(`${base_url}/api/comments?userId=${userId}`);
+  return res.json();
+};
