@@ -3,8 +3,7 @@ import DeletePromptAdminDashboard from "@/Components/Dashboard/Admin/DeletePromp
 import MakeFuturePrompt from "@/Components/Dashboard/Admin/MakeFuturePrompt/MakeFuturePrompt";
 import PromptReject from "@/Components/Dashboard/Admin/PromptReject/PromptReject";
 import { getPrompts } from "@/lib/api/prompts";
-import { Ellipsis } from "@gravity-ui/icons";
-import { Button, Table } from "@heroui/react";
+import { Table } from "@heroui/react";
 import React from "react";
 
 const AllPromptsPage = async () => {

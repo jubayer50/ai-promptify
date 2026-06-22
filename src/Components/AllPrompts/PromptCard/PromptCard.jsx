@@ -5,10 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PromptCard = async ({ prompt }) => {
-  // TODO make capital of p to curet pending
   return (
     <div>
-      {prompt?.status !== "pending" && (
+      {prompt?.status === "Approve" && (
         <div className="border rounded-md overflow-hidden group h-full flex flex-col">
           <div className="h-60 overflow-hidden border-b flex flex-col shrink-0">
             <Image

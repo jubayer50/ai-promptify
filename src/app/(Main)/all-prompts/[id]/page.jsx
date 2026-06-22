@@ -36,28 +36,6 @@ const PromptDetailPage = async ({ params }) => {
     creatorEmail,
     bookmarkCount,
   } = getPrompt;
-  /**
-  
-{
-    "_id": "6a34e6fffb87770413b6f99f",
-    "prompt_title": "Cum voluptatem Volu",
-    "prompt_description": "Mollitia quia commod",
-    "prompt_content": "Maiores nemo alias d",
-    "ai_tool": "claude",
-    "tags": "Facilis ipsa volupt",
-    "difficulty_level": "intermediate",
-    "image": "https://i.ibb.co/s94nQNDR/redux.png",
-    "visibility": "privet",
-    "copyCount": 0,
-    "status": "Pending",
-    "userId": "6a336c6053c1e1314629a757",
-    "createdAt": "2026-06-19T06:51:43.201Z",
-    "creatorName": "Jubayer",
-    "creatorEmail": "jubayer@gmail.com",
-    "creatorImage": "https://images.unsplash.com/photo-1537511446984-935f663eb1f4"
-}
-   
-   */
 
   return (
     <div className="max-w-330 mx-auto px-3 mt-5 mb-8">

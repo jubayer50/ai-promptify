@@ -1,18 +1,25 @@
 "use client";
 
 import { deletePrompt } from "@/lib/action/myPrompt";
+import { deleteReport } from "@/lib/action/report";
 import { AlertDialog, Button, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
-const DeletePromptAdminDashboard = ({ promptId }) => {
+const DeletePromptAdminDashboard = ({ promptId, reportId }) => {
   const router = useRouter();
-
   const handleDelete = async (promptId) => {
     const result = await deletePrompt(promptId);
 
     if (result.deletedCount > 0) {
       toast.success("Successfully delete prompt");
       router.refresh();
+    }
+
+    if (reportId) {
+      const removeReport = await deleteReport(reportId);
+      if (removeReport.deletedCount > 0) {
+        router.refresh();
+      }
     }
   };
 

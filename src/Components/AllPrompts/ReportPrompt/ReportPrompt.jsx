@@ -124,6 +124,7 @@ const ReportPrompt = ({ prompt, user }) => {
                   </TextField>
                   <div className="flex justify-end">
                     <Button
+                      slot={"close"}
                       type="submit"
                       className={"rounded-md bg-red-100 text-red-500"}
                     >
