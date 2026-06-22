@@ -1,6 +1,5 @@
-import { base_url } from "../core/server";
+import { serverFetch } from "../core/server";
 
-export const getUserById = async (userId) => {
-  const res = await fetch(`${base_url}/api/users?userId=${userId}`);
-  return res.json();
+export const getUsers = async () => {
+  return serverFetch("/api/users");
 };

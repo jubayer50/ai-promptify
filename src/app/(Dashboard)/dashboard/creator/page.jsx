@@ -19,7 +19,6 @@ const CreatorDashboardHome = async () => {
   );
   // console.log(userPrompts, "from creator home page");
 
-  // static summary data
   const totalPrompts = userPrompts.length;
   const totalBookmarks = userPromptsBookmarks.length;
   const totalCopies = totalCopyCounts;
