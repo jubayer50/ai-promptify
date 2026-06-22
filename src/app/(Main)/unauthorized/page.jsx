@@ -23,7 +23,7 @@ const Unauthorized = () => {
 
         {/* Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/login">
+          <Link href="/signin">
             <button className="px-6 py-3 rounded-md bg-linear-to-r from-purple-600 to-pink-500 text-white font-semibold shadow hover:scale-103 transition-all duration-300">
               Login Now
             </button>

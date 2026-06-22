@@ -91,6 +91,7 @@ const Navbar = () => {
                       user?.image ||
                       "https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
                     }
+                    className="object-cover aspect-square"
                   />
                   <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
                 </Avatar>
