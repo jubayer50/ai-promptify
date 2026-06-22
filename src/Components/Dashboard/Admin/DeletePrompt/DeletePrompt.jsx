@@ -1,11 +1,10 @@
 "use client";
 
 import { deletePrompt } from "@/lib/action/myPrompt";
-import { TrashBin } from "@gravity-ui/icons";
 import { AlertDialog, Button, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
-const DeletePrompt = ({ promptId }) => {
+const DeletePromptAdminDashboard = ({ promptId }) => {
   const router = useRouter();
 
   const handleDelete = async (promptId) => {
@@ -16,10 +15,11 @@ const DeletePrompt = ({ promptId }) => {
       router.refresh();
     }
   };
+
   return (
     <AlertDialog>
-      <Button isIconOnly variant={variant}>
-        <TrashBin className="text-red-600"></TrashBin>
+      <Button className={"rounded-md"} size="sm" variant="danger">
+        Delete
       </Button>
 
       <AlertDialog.Backdrop>
@@ -58,4 +58,4 @@ const DeletePrompt = ({ promptId }) => {
   );
 };
 
-export default DeletePrompt;
+export default DeletePromptAdminDashboard;
