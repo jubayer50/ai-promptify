@@ -2,11 +2,14 @@ import Image from "next/image";
 import { getUserSession } from "@/lib/core/session";
 import Link from "next/link";
 import { Button } from "@heroui/react";
+import { getUserPromptsByUserId } from "@/lib/api/prompts";
 
 const ProfilePage = async () => {
   const user = await getUserSession();
 
-  const totalPrompts = 0; // Later fetch from DB
+  const userTotalPrompts = await getUserPromptsByUserId(user?.id);
+
+  // const totalPrompts = 0; // Later fetch from DB
 
   return (
     <section className="py-5 px-3">
@@ -68,7 +71,9 @@ const ProfilePage = async () => {
 
             <div className="rounded-xl p-5 bg-pink-50 border border-pink-100">
               <p className="text-sm text-gray-500">Total Prompts</p>
-              <h3 className="text-xl font-bold mt-1">{totalPrompts}</h3>
+              <h3 className="text-xl font-bold mt-1">
+                {userTotalPrompts.length}
+              </h3>
             </div>
 
             <div className="rounded-xl p-5 bg-indigo-50 border border-indigo-100">

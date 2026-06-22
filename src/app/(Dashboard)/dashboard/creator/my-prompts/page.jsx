@@ -1,3 +1,4 @@
+import DeletePrompt from "@/Components/Dashboard/Creator/DeletePrompt/DeletePrompt";
 import { getUserPromptsByUserId } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
 import { Eye, PencilToSquare, TrashBin } from "@gravity-ui/icons";
@@ -75,13 +76,7 @@ const CreatorMyPromptsPage = async () => {
                           <PencilToSquare></PencilToSquare>
                         </Button>
 
-                        <Button isIconOnly variant="tertiary" className={""}>
-                          <PencilToSquare></PencilToSquare>
-                        </Button>
-
-                        <Button isIconOnly variant="tertiary" className={""}>
-                          <TrashBin className="text-red-600"></TrashBin>
-                        </Button>
+                        <DeletePrompt promptId={userPrompt?._id}></DeletePrompt>
                       </div>
                     </Table.Cell>
                   </Table.Row>

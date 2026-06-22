@@ -1,10 +1,15 @@
+import { getUserPromptsByUserId } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
+import { Button } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const CreatorProfilePage = async () => {
   const user = await getUserSession();
 
-  const totalPrompts = 0; // Later fetch from DB
+  const userTotalPrompts = await getUserPromptsByUserId(user?.id);
+
+  // const totalPrompts = 0; // Later fetch from DB
   return (
     <section className="py-5 px-3">
       <div className="max-w-330 mx-auto">
@@ -67,7 +72,9 @@ const CreatorProfilePage = async () => {
 
             <div className="rounded-xl p-5 bg-pink-50 border border-pink-100">
               <p className="text-sm text-gray-500">Total Prompts</p>
-              <h3 className="text-xl font-bold mt-1">{totalPrompts}</h3>
+              <h3 className="text-xl font-bold mt-1">
+                {userTotalPrompts?.length}
+              </h3>
             </div>
 
             <div className="rounded-xl p-5 bg-indigo-50 border border-indigo-100">
@@ -80,9 +87,9 @@ const CreatorProfilePage = async () => {
         </div>
       </div>
 
-      {/* <div className="mt-8 max-w-330 mx-auto">
+      <div className="mt-8 max-w-330 mx-auto">
         {user?.plan === "free" ? (
-          <div className="rounded-xl border border-purple-200 bg-linear-to-r from-purple-50 to-pink-50 p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="rounded-xl border border-purple-200 bg-linear-to-r from-purple-50 to-pink-50 p-5 flex flex-col md:flex-row md:items-center items-start md:justify-between gap-4">
             <div>
               <h3 className="text-lg font-bold text-gray-800">
                 Upgrade to Premium
@@ -92,11 +99,23 @@ const CreatorProfilePage = async () => {
               </p>
             </div>
 
-            <a href="/payment">
-              <button className="px-6 py-3 rounded-md bg-linear-to-r from-purple-600 to-pink-500 text-white font-semibold shadow-md hover:scale-105 transition-all duration-300">
-                Upgrade Now
-              </button>
-            </a>
+            <div className="flex gap-2.5">
+              <form action={"/api/subscription"} method="POST">
+                <Button className="rounded-md bg-linear-to-r from-purple-600 to-pink-500 text-white font-semibold shadow-md hover:scale-105 transition-all duration-300">
+                  Upgrade Now
+                </Button>
+              </form>
+
+              <Link href={"/plan"}>
+                <Button
+                  className={
+                    "rounded-md bg-transparent text-black border border-purple-600 hover:scale-105 transition-all duration-300"
+                  }
+                >
+                  View Plan
+                </Button>
+              </Link>
+            </div>
           </div>
         ) : (
           <div className="rounded-xl border border-yellow-200 bg-linear-to-r from-yellow-50 to-orange-50 p-5 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -114,7 +133,7 @@ const CreatorProfilePage = async () => {
             </div>
           </div>
         )}
-      </div> */}
+      </div>
     </section>
   );
 };
