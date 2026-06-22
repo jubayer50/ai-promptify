@@ -1,11 +1,14 @@
 "use client";
 
-import { updatePromptsCopyCount } from "@/lib/action/prompts";
+import { updatePrompt, updatePromptsCopyCount } from "@/lib/action/prompts";
 import { Check, Copy } from "@gravity-ui/icons";
 import { Button, toast } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const CopyButton = ({ prompt, user }) => {
+  const router = useRouter();
+
   const { _id, prompt_content, visibility } = prompt;
 
   const [showCopy, setShowCopy] = useState(true);
@@ -24,10 +27,11 @@ const CopyButton = ({ prompt, user }) => {
       increment: 1,
     };
 
-    const res = await updatePromptsCopyCount(_id, incrementCopyCount);
+    const res = await updatePrompt(_id, incrementCopyCount);
 
     if (res.modifiedCount > 0) {
       toast.success("Prompt Content copied");
+      router.refresh(`/all-prompts/${_id}`);
     }
   };
 
