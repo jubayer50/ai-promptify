@@ -21,20 +21,6 @@ const AllUsersPage = async () => {
         </p>
       </div>
 
-      {/* 
-      {
-    "_id": "6a336af353c1e1314629a754",
-    "name": "Reagan Baker",
-    "email": "qyfygy@mailinator.com",
-    "emailVerified": false,
-    "image": "Blanditiis amet et ",
-    "createdAt": "2026-06-18T03:50:11.283Z",
-    "updatedAt": "2026-06-18T03:50:11.283Z",
-    "role": "creator",
-    "plan": "free"
-}
-      */}
-
       <div className="mt-6">
         <Table>
           <Table.ScrollContainer>

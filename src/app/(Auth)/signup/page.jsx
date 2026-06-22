@@ -2,11 +2,12 @@
 
 import { authClient } from "@/lib/auth-client";
 import { EyeClosed } from "@gravity-ui/icons";
-import { toast } from "@heroui/react";
+import { Separator, toast } from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,6 +32,12 @@ const SignUpPage = () => {
     }
 
     reset();
+  };
+
+  const handleGoogleLogIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -182,6 +189,17 @@ const SignUpPage = () => {
               Sign In
             </button>
           </form>
+
+          <Separator className="my-6" />
+
+          <div className="">
+            <button
+              onClick={handleGoogleLogIn}
+              className="w-full py-3 rounded-lg flex justify-center items-center gap-4 font-semibold border border-purple-600 "
+            >
+              <FcGoogle size={22}></FcGoogle> SignUp with Google
+            </button>
+          </div>
 
           <div className="mt-5">
             <p className="text-center">

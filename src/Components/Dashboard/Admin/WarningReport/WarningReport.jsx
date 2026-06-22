@@ -13,21 +13,6 @@ import {
 } from "@heroui/react";
 
 const WarningReport = ({ report }) => {
-  /**
-    
-         {
-       "_id": "6a363c2c7b20d5124c09f8b1",
-       "report_reason": "inappropriate",
-       "report_description": "asdf",
-       "PromptId": "6a358f3ffeb0e4874cffc628",
-       "reportPromptTitle": "Eum nihil amet mole",
-       "userId": "6a336c6053c1e1314629a757",
-       "userName": "Jubayer",
-       "userEmail": "jubayer@gmail.com",
-       "createdAt": "2026-06-20T07:07:24.481Z"
-   }
-         
-   */
   const onSubmit = async (e) => {
     e.preventDefault();
 

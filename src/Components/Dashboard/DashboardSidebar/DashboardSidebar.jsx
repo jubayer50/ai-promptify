@@ -4,6 +4,7 @@ import Logo from "@/Components/Logo/Logo";
 import { authClient } from "@/lib/auth-client";
 import { Bars } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
+import { label } from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,6 +19,7 @@ import {
   MdOutlinePreview,
   MdOutlineReportProblem,
 } from "react-icons/md";
+import { RiBankCardFill } from "react-icons/ri";
 
 export function DashboardSidebar() {
   const pantName = usePathname();
@@ -80,6 +82,11 @@ export function DashboardSidebar() {
       href: "/dashboard/admin/analytics",
       icon: MdOutlineAnalytics,
       label: "Analytics",
+    },
+    {
+      href: "/dashboard/admin/all-payments",
+      icon: RiBankCardFill,
+      label: "All Payments",
     },
     { href: "/dashboard/admin/profile", icon: FaRegUser, label: "Profile" },
   ];

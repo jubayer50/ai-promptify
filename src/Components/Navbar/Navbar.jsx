@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { ArrowRightFromSquare, ChevronDown } from "@gravity-ui/icons";
 import Logo from "../Logo/Logo";
@@ -82,7 +82,19 @@ const Navbar = () => {
               onClick={() => setShowProfileMenu(!showProfileMenu)}
               className="relative px-2 py-1 rounded-md hover:bg-gray-200 flex items-center gap-2 transition-all duration-300"
             >
-              <div className="h-8 w-8 rounded-full bg-linear-to-b from-[#654EFB] to-[#D407D1]"></div>
+              <div className="rounded-full bg-linear-to-b from-[#654EFB] to-[#D407D1]">
+                <Avatar>
+                  <Avatar.Image
+                    referrerPolicy="no"
+                    alt={user?.name || "John Doe"}
+                    src={
+                      user?.image ||
+                      "https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
+                    }
+                  />
+                  <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                </Avatar>
+              </div>
 
               <ChevronDown
                 className={`${showProfileMenu ? "rotate-180 transition-all duration-300" : ""}`}

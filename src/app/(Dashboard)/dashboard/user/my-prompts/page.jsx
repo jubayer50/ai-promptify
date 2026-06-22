@@ -2,13 +2,15 @@ import DeletePrompt from "@/Components/Dashboard/CommonUserAndCreator/DeleteProm
 import UpdatePrompt from "@/Components/Dashboard/CommonUserAndCreator/DeletePrompt/UpdatePrompt";
 import { getUserPromptsByUserId } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
-import { Eye, PencilToSquare, TrashBin } from "@gravity-ui/icons";
+import { Eye } from "@gravity-ui/icons";
 import { Button, Table } from "@heroui/react";
 import Link from "next/link";
 import React from "react";
 
 const MyPromptsPage = async () => {
   const user = await getUserSession();
+
+  console.log(user, "from user my pormpts");
 
   const userPrompts = await getUserPromptsByUserId(user?.id);
 
