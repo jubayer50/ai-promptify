@@ -4,10 +4,9 @@ import Logo from "@/Components/Logo/Logo";
 import { authClient } from "@/lib/auth-client";
 import { ArrowRightFromSquare, Bars } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
-import { label } from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { CiBookmark } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
@@ -23,6 +22,7 @@ import { RiBankCardFill } from "react-icons/ri";
 
 export function DashboardSidebar() {
   const pantName = usePathname();
+  const router = useRouter();
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
@@ -99,6 +99,11 @@ export function DashboardSidebar() {
 
   const navItems = navLinksMap[user?.role || "user"];
 
+  const handleLogout = async () => {
+    await authClient.signOut();
+    router.push("/signin");
+  };
+
   const navLinks = (
     <>
       {navItems.map((item) => (
@@ -148,7 +153,10 @@ export function DashboardSidebar() {
         </div>
 
         <div className="px-4 mt-2">
-          <Button className={"bg-transparent text-red-600"}>
+          <Button
+            onClick={handleLogout}
+            className={"bg-transparent text-red-600"}
+          >
             <ArrowRightFromSquare></ArrowRightFromSquare> Logout
           </Button>
         </div>
@@ -173,10 +181,15 @@ export function DashboardSidebar() {
                 <nav className="flex flex-col gap-1">
                   {navLinks}
 
-                  <div className="mt-3 px-4">
-                    <p className={"text-red-500 gap-1 flex items-center"}>
+                  <div className="mt-1">
+                    <Button
+                      onClick={handleLogout}
+                      className={
+                        "text-red-500 gap-1 bg-transparent flex items-center"
+                      }
+                    >
                       <ArrowRightFromSquare></ArrowRightFromSquare> Logout
-                    </p>
+                    </Button>
                   </div>
                 </nav>
               </Drawer.Body>
