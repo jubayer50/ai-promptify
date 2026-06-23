@@ -19,7 +19,7 @@ const DeletePrompt = ({ promptId }) => {
   return (
     <AlertDialog>
       <Button isIconOnly variant="danger">
-        <TrashBin className="text-red-600"></TrashBin>
+        <TrashBin></TrashBin>
       </Button>
 
       <AlertDialog.Backdrop>

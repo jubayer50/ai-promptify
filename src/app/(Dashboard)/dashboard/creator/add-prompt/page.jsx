@@ -120,7 +120,7 @@ const AddPromptPage = () => {
     const postPrompt = await createPrompt(promptData);
     if (postPrompt.insertedId) {
       toast.success("Prompt successfully submitted");
-      router.push("/all-prompts");
+      router.push("/dashboard/my-prompts");
     }
   };
 

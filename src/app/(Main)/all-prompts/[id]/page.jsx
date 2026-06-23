@@ -7,7 +7,7 @@ import { getBookmarkByUserIdAndPromptId } from "@/lib/api/bookmarks";
 import { getPromptById } from "@/lib/api/prompts";
 import { getUserSession } from "@/lib/core/session";
 import { ArrowLeft } from "@gravity-ui/icons";
-import { Button, TextArea, TextField } from "@heroui/react";
+import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 

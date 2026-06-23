@@ -100,7 +100,10 @@ const ProfilePage = async () => {
 
             <div className="flex gap-2.5">
               <form action={"/api/subscription"} method="POST">
-                <Button className="rounded-md bg-linear-to-r from-purple-600 to-pink-500 text-white font-semibold shadow-md hover:scale-105 transition-all duration-300">
+                <Button
+                  type="submit"
+                  className="rounded-md bg-linear-to-r from-purple-600 to-pink-500 text-white font-semibold shadow-md hover:scale-105 transition-all duration-300"
+                >
                   Upgrade Now
                 </Button>
               </form>
