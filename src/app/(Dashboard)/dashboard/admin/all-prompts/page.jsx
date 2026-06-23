@@ -1,3 +1,4 @@
+import AllPromptsPagination from "@/Components/Dashboard/Admin/AllPromptsPagination/AllPromptsPagination";
 import ApprovePrompt from "@/Components/Dashboard/Admin/ApprovePrompt/ApprovePrompt";
 import DeletePromptAdminDashboard from "@/Components/Dashboard/Admin/DeletePrompt/DeletePrompt";
 import MakeFuturePrompt from "@/Components/Dashboard/Admin/MakeFuturePrompt/MakeFuturePrompt";
@@ -6,8 +7,19 @@ import { getPrompts } from "@/lib/api/prompts";
 import { Table } from "@heroui/react";
 import React from "react";
 
-const AllPromptsPage = async () => {
-  const { prompts } = await getPrompts();
+const AllPromptsPage = async ({ searchParams }) => {
+  const sParams = await searchParams;
+
+  const page = sParams.page;
+
+  const params = new URLSearchParams();
+  if (page) {
+    params.set("page", page);
+  }
+
+  // console.log(sParams, "from admin all prompts");
+
+  const { totalPrompts, prompts } = await getPrompts(params);
 
   return (
     <div className="max-w-330 mx-auto px-3">
@@ -84,6 +96,12 @@ const AllPromptsPage = async () => {
             </Table.Content>
           </Table.ScrollContainer>
         </Table>
+
+        <div className="mt-5 mb-10">
+          <AllPromptsPagination
+            totalPrompts={totalPrompts}
+          ></AllPromptsPagination>
+        </div>
       </div>
     </div>
   );
