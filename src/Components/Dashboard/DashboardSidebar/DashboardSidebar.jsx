@@ -2,7 +2,7 @@
 
 import Logo from "@/Components/Logo/Logo";
 import { authClient } from "@/lib/auth-client";
-import { Bars } from "@gravity-ui/icons";
+import { ArrowRightFromSquare, Bars } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import { label } from "motion/react-client";
 import Image from "next/image";
@@ -116,34 +116,42 @@ export function DashboardSidebar() {
 
   return (
     <>
-      <aside className="hidden md:block w-fit border-r min-h-screen">
-        <div className="py-6 border-b px-4">
-          <Logo></Logo>
-        </div>
-
-        <div className="flex items-center gap-3 py-6 px-4">
-          <Image
-            src={
-              user?.image ||
-              "https://www.magnific.com/free-photos-vectors/default-user"
-            }
-            alt={user?.name || "user"}
-            width={100}
-            height={100}
-            className="w-14 h-14 rounded-full object-cover"
-          ></Image>
-
-          <div>
-            <h2 className="font-bold text-xl">{user?.name}</h2>
-            <p
-              className={`px-2.5 py-.5 w-fit text-[12px] font-medium border rounded-full mt-1 ${user?.role == "user" ? "border-blue-500 text-blue-500" : user?.role == "creator" ? "border-yellow-500 text-yellow-500" : user?.role == "admin" ? "border-green-600 text-green-600" : ""}`}
-            >
-              {user?.role?.toUpperCase()}
-            </p>
+      <aside className="hidden md:flex flex-col  w-fit border-r min-h-screen">
+        <div>
+          <div className="py-6 border-b px-4">
+            <Logo></Logo>
           </div>
+
+          <div className="flex items-center gap-3 py-6 px-4">
+            <Image
+              src={
+                user?.image ||
+                "https://www.magnific.com/free-photos-vectors/default-user"
+              }
+              alt={user?.name || "user"}
+              width={100}
+              height={100}
+              className="w-14 h-14 rounded-full object-cover"
+            ></Image>
+
+            <div>
+              <h2 className="font-bold text-xl">{user?.name}</h2>
+              <p
+                className={`px-2.5 py-.5 w-fit text-[12px] font-medium border rounded-full mt-1 ${user?.role == "user" ? "border-blue-500 text-blue-500" : user?.role == "creator" ? "border-yellow-500 text-yellow-500" : user?.role == "admin" ? "border-green-600 text-green-600" : ""}`}
+              >
+                {user?.role?.toUpperCase()}
+              </p>
+            </div>
+          </div>
+
+          <div className="px-4">{navLinks}</div>
         </div>
 
-        <div className="px-4">{navLinks}</div>
+        <div className="px-4 mt-2">
+          <Button className={"bg-transparent text-red-600"}>
+            <ArrowRightFromSquare></ArrowRightFromSquare> Logout
+          </Button>
+        </div>
       </aside>
 
       <Drawer>
@@ -162,7 +170,15 @@ export function DashboardSidebar() {
                 <Drawer.Heading>Navigation</Drawer.Heading>
               </Drawer.Header>
               <Drawer.Body>
-                <nav className="flex flex-col gap-1">{navLinks}</nav>
+                <nav className="flex flex-col gap-1">
+                  {navLinks}
+
+                  <div className="mt-3 px-4">
+                    <p className={"text-red-500 gap-1 flex items-center"}>
+                      <ArrowRightFromSquare></ArrowRightFromSquare> Logout
+                    </p>
+                  </div>
+                </nav>
               </Drawer.Body>
             </Drawer.Dialog>
           </Drawer.Content>

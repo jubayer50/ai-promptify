@@ -7,7 +7,7 @@ import { Table } from "@heroui/react";
 import React from "react";
 
 const AllPromptsPage = async () => {
-  const prompts = await getPrompts();
+  const { prompts } = await getPrompts();
 
   return (
     <div className="max-w-330 mx-auto px-3">

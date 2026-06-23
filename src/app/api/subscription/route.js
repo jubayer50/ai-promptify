@@ -10,6 +10,10 @@ export async function POST(req) {
 
     const user = await getUserSession();
 
+    if (!user) {
+      return NextResponse.redirect(new URL("/signin", req.url));
+    }
+
     const { searchParams } = new URL(req.url);
     const redirectPath = searchParams.get("redirect");
 

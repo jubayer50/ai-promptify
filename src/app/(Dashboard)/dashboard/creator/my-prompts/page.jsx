@@ -10,7 +10,7 @@ import React from "react";
 const CreatorMyPromptsPage = async () => {
   const user = await getUserSession();
 
-  const userPrompts = await getUserPromptsByUserId(user?.id);
+  const { prompts: userPrompts } = await getUserPromptsByUserId(user?.id);
 
   return (
     <div className="max-w-330 mx-auto px-3">

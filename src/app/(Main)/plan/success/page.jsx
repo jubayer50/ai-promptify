@@ -5,8 +5,10 @@ import { redirect } from "next/navigation";
 export default async function Success({ searchParams }) {
   const { session_id } = await searchParams;
 
-  if (!session_id)
+  if (!session_id) {
+    redirect("/plan");
     throw new Error("Please provide a valid session_id (`cs_test_...`)");
+  }
 
   const {
     status,

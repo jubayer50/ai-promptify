@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input } from "@heroui/react";
+import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -36,21 +36,21 @@ const FilterAndSearch = () => {
   //
 
   return (
-    <div className="max-w-330 px-3 mx-auto mt-6">
+    <div className="max-w-330 px-3 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 items-center">
         {/* Search */}
-        <Input
+        <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search prompt..."
-          className="border border-gray-200 rounded-md shadow-none"
+          className="border w-full p-2 rounded-md shadow-none"
         />
 
         {/* Category */}
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md w-full"
         >
           <option value="">Filter by Category</option>
           <option value="content writing">Content & Writing</option>
@@ -66,7 +66,7 @@ const FilterAndSearch = () => {
         <select
           value={difficulty_level}
           onChange={(e) => setDifficulty_level(e.target.value)}
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md w-full"
         >
           <option value="">Filter by difficulty level</option>
           <option value="beginner">Beginner</option>
@@ -78,7 +78,7 @@ const FilterAndSearch = () => {
         <select
           value={ai_tool}
           onChange={(e) => setAi_tool(e.target.value)}
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md w-full"
         >
           <option value="">Filter by AI Tool</option>
           <option value="gemini">Gemini</option>
@@ -92,7 +92,7 @@ const FilterAndSearch = () => {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md w-full"
         >
           <option value="">Sort By</option>
           <option value="most_popular">Most Popular</option>
@@ -103,7 +103,9 @@ const FilterAndSearch = () => {
         <div>
           <Button
             onClick={handleFilterApply}
-            className={"w-full md:w-fit rounded-md"}
+            className={
+              "w-full bg-linear-to-r from-purple-600 to-pink-500  rounded-md"
+            }
           >
             Filter Apply
           </Button>

@@ -1,4 +1,5 @@
 import FilterAndSearch from "@/Components/AllPrompts/FilterAndSearch/FilterAndSearch";
+import PaginationPrompt from "@/Components/AllPrompts/PaginationPrompt/PaginationPrompt";
 import PromptCard from "@/Components/AllPrompts/PromptCard/PromptCard";
 import { getPrompts } from "@/lib/api/prompts";
 
@@ -11,6 +12,7 @@ const AllPromptsPage = async ({ searchParams }) => {
   const difficulty_level = sParams.difficulty_level;
   const ai_tool = sParams.ai_tool;
   const sortBy = sParams.sortBy;
+  const page = sParams.page;
 
   const params = new URLSearchParams();
   if (search) {
@@ -28,8 +30,13 @@ const AllPromptsPage = async ({ searchParams }) => {
   if (sortBy) {
     params.set("sortBy", sortBy);
   }
+  if (page) {
+    params.set("page", page);
+  }
 
-  const prompts = await getPrompts(params);
+  const { totalPrompts, prompts } = await getPrompts(params);
+
+  // console.log(prompts.length);
 
   return (
     <div className="max-w-330 mx-auto px-3 mt-6">
@@ -46,7 +53,7 @@ const AllPromptsPage = async ({ searchParams }) => {
         </p>
       </div>
 
-      <div>
+      <div className="bg-purple-50 px-2 py-5 rounded-md mt-8">
         <FilterAndSearch></FilterAndSearch>
       </div>
 
@@ -54,6 +61,13 @@ const AllPromptsPage = async ({ searchParams }) => {
         {prompts.map((prompt) => (
           <PromptCard key={prompt._id} prompt={prompt}></PromptCard>
         ))}
+      </div>
+
+      <div className="mt-5">
+        <PaginationPrompt
+          prompts={prompts}
+          totalPrompts={totalPrompts}
+        ></PaginationPrompt>
       </div>
     </div>
   );
