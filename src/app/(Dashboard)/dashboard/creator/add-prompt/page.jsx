@@ -100,11 +100,13 @@ const AddPromptPage = () => {
     const imageFile = data?.image;
     const hostImageUrl = await uploadImage(imageFile);
 
+    console.log(data);
+
     const promptData = {
       prompt_title: data?.prompt_title,
       prompt_description: data?.prompt_description,
       prompt_content: data?.prompt_content,
-      prompt_category: data?.category,
+      category: data.category,
       ai_tool: data?.ai_tool,
       tags: data?.tags,
       difficulty_level: data?.difficulty_level,
@@ -180,7 +182,7 @@ const AddPromptPage = () => {
               >
                 <ListBox>
                   <ListBox.Item
-                    id="content writing"
+                    id="content & writing"
                     textValue="Content Writing"
                   >
                     Content Writing

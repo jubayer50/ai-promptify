@@ -1,8 +1,14 @@
 import { base_url, serverFetch } from "../core/server";
 
-export const getPrompts = async () => {
-  return serverFetch("/api/prompts");
+export const getPrompts = async (query) => {
+  return serverFetch(`/api/prompts?${query}`);
 };
+
+// export const getPrompts = async (query) => {
+//   const res = fetch(`/api/prompts?${query}`);
+
+//   return res.json();
+// };
 
 export const getPromptById = async (promptId) => {
   const res = await fetch(`${base_url}/api/prompts/${promptId}`);
