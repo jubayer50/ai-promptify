@@ -7,7 +7,7 @@ import { getComments } from "@/lib/api/commentsAndRating";
 const Analytics = async () => {
   const allUsers = await getUsers();
 
-  const prompts = await getPrompts();
+  const { prompts } = await getPrompts();
 
   const reviews = await getComments();
 
