@@ -3,7 +3,6 @@ import { Table } from "@heroui/react";
 
 const AllPaymentsPage = async () => {
   const payments = await getPayments();
-  console.log(payments, "from admin payments page");
 
   return (
     <div>
