@@ -73,6 +73,12 @@ The goal of AIPromptify is to build a modern AI community where creators and use
 
 ---
 
-## 📦
+## 📦 Projects links:
+
+### Front-End Live Link: https://ai-promptify.vercel.app/
+
+### Client Repository Link: https://github.com/jubayer50/ai-promptify
+
+### Server Repository Link: https://github.com/jubayer50/ai-promptify-server
 
 ---

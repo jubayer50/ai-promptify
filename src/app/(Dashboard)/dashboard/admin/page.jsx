@@ -1,9 +1,7 @@
+import { redirect } from "next/navigation";
+
 const AdminDashboardHome = () => {
-  return (
-    <div>
-      <h2>Admin Dashboard Home</h2>
-    </div>
-  );
+  return redirect("/dashboard/admin/all-users");
 };
 
 export default AdminDashboardHome;
