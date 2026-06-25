@@ -6,18 +6,6 @@ import { FaStar } from "react-icons/fa";
 const DisplayComment = async ({ prompt, user }) => {
   const comments = await getCommentsByPromptIdAndUserId(prompt?._id, user?.id);
 
-  /**
-   * _id: '6a368e34f88572a6c40e2e38',
-      promptId: '6a33e0d57e48e06ae98e496d',
-      promptTitle: 'Consequatur Consequ',
-      rating: 0,
-      comment: 'That is a wonderful prompt.',
-      userId: '6a336c6053c1e1314629a757',
-      userName: 'Jubayer',
-      userImage: 'https://images.unsplash.com/photo-1537511446984-935f663eb1f4',
-      createAt: '2026-06-20T12:57:24.408Z'
-   */
-
   return (
     <div>
       <h3 className="font-semibold">Comments</h3>

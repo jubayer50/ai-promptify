@@ -7,8 +7,6 @@ import { FaStar } from "react-icons/fa";
 const MyReviewPage = async () => {
   const user = await getUserSession();
 
-
-
   const getUserAllComments = await getUserComments(user?.id);
 
   return (

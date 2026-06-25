@@ -17,7 +17,6 @@ const PromptDetailPage = async ({ params }) => {
 
   const getPrompt = await getPromptById(id);
   const getUserBookmark = await getBookmarkByUserIdAndPromptId(user?.id, id);
-  console.log(getUserBookmark, "from detail apge");
 
   const {
     _id,
@@ -190,8 +189,8 @@ const PromptDetailPage = async ({ params }) => {
             <div className="mt-1 flex items-center gap-3">
               <div className="h-10 w-10 rounded-full border-2 border-purple-300">
                 <Image
-                  src={creatorImage}
-                  alt={creatorName}
+                  src={creatorImage || "https://i.ibb.co.com/mrbQZFhn/user.png"}
+                  alt={creatorName || "user image"}
                   width={20}
                   height={20}
                   className="w-full h-full rounded-full object-cover"

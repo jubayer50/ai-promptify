@@ -1,4 +1,9 @@
-import { base_url, serverFetch } from "../core/server";
+import {
+  authHeader,
+  base_url,
+  handleStatusCode,
+  serverFetch,
+} from "../core/server";
 
 export const getPrompts = async (query) => {
   return serverFetch(`/api/prompts?${query}`);
@@ -11,8 +16,11 @@ export const getPrompts = async (query) => {
 // };
 
 export const getPromptById = async (promptId) => {
-  const res = await fetch(`${base_url}/api/prompts/${promptId}`);
-  return res.json();
+  const res = await fetch(`${base_url}/api/prompts/${promptId}`, {
+    headers: await authHeader(),
+  });
+
+  return handleStatusCode(res);
 };
 
 export const getUserPromptsByUserId = async (userId) => {

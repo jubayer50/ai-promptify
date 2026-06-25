@@ -67,30 +67,6 @@ const AddPromptPage = () => {
     fetchUserPrompt();
   }, [user]);
 
-  // handle user limit
-  // if (plan?.maximumAddPrompt <= userPrompts.length) {
-  //   return (
-  //     <div className="max-w-330 mx-auto bg-purple-200 flex items-center justify-center px-3 py-8 rounded-md ">
-  //       <div className="text-center space-y-1.5">
-  //         <h3 className="font-bold">Your limit is over</h3>
-  //         <p>Free user can add prompt only 3.</p>
-  //         <p className="font-medium">
-  //           To add more{" "}
-  //           <em className="bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
-  //             prompt
-  //           </em>
-  //           , you need to be a premium member!
-  //         </p>
-  //         <Button
-  //           className={"rounded-md bg-linear-to-r from-purple-600 to-pink-500"}
-  //         >
-  //           Unlock Premium
-  //         </Button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -120,7 +96,7 @@ const AddPromptPage = () => {
     const postPrompt = await createPrompt(promptData);
     if (postPrompt.insertedId) {
       toast.success("Prompt successfully submitted");
-      router.push("/dashboard/my-prompts");
+      router.push("/dashboard/creator/my-prompts");
     }
   };
 

@@ -1,10 +1,10 @@
-import { base_url } from "../core/server";
+import { authHeader, base_url, handleStatusCode } from "../core/server";
 
 export const deletePrompt = async (promptID) => {
   const res = await fetch(`${base_url}/api/prompts/${promptID}`, {
     method: "DELETE",
-    headers: { "Content-type": "application/json" },
+    headers: { "Content-type": "application/json", ...(await authHeader()) },
   });
 
-  return res.json();
+  return handleStatusCode(res);
 };

@@ -43,7 +43,7 @@ const TopCreatorSection = async () => {
                 Top Creator
               </span>
 
-              <div className="mt-5 w-full rounded-xl bg-purple-50 py-3">
+              <div className="mt-5 w-full rounded-lg bg-purple-50 py-3">
                 <p className="text-2xl font-bold text-purple-600">
                   {creator.totalPrompts}
                 </p>

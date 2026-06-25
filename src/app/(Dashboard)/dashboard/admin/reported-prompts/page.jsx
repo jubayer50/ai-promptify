@@ -2,7 +2,7 @@ import DeletePromptAdminDashboard from "@/Components/Dashboard/Admin/DeletePromp
 import DismissReport from "@/Components/Dashboard/Admin/DismissReport/DismissReport";
 import WarningReport from "@/Components/Dashboard/Admin/WarningReport/WarningReport";
 import { getReports } from "@/lib/api/report";
-import { Button, Table } from "@heroui/react";
+import { Table } from "@heroui/react";
 
 const ReportedPrompts = async () => {
   const reports = await getReports();
